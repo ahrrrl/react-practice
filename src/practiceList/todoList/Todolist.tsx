@@ -51,10 +51,6 @@ export default function TodoList() {
   const [text, setText] = useState('');
   const [todoList, dispatch] = useReducer(reducer, initialState);
 
-  const date = new Date();
-  console.log('뉴데이트', date);
-  console.log('데이트 나우', Date.now());
-
   return (
     <div className='box'>
       <h2>할 일을 적어보아요</h2>

@@ -6,7 +6,7 @@ export default function ControlledForm() {
   const handleOnchange = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
   };
-  console.log('컨 재랜더링');
+
   return (
     <form>
       <input value={value} onChange={handleOnchange}></input>

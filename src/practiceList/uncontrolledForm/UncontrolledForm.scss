@@ -1,0 +1,36 @@
+.form-header {
+  display: flex;
+  margin-bottom: 24px;
+}
+
+.form-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.input-box {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.form-input {
+  border: 1px solid #a1a1a1;
+  padding: 8px 16px;
+  height: 40px;
+  border-radius: 4px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.form-textarea {
+  border: 1px solid #a1a1a1;
+  padding: 16px;
+  height: 346px;
+  border-radius: 4px;
+}

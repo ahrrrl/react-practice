@@ -1,6 +1,13 @@
-import DaumPostcodeEmbed from 'react-daum-postcode';
+import { useDaumPostcodePopup } from 'react-daum-postcode';
 
-export default function Postcode() {
+interface PostcodeProps {
+  address: string;
+  setAddress: (string: string) => void;
+}
+
+export default function Postcode({ address, setAddress }: PostcodeProps) {
+  const open = useDaumPostcodePopup();
+
   const handleComplete = (data: any) => {
     let fullAddress = data.address;
     let extraAddress = '';
@@ -15,9 +22,20 @@ export default function Postcode() {
       }
       fullAddress += extraAddress !== '' ? ` (${extraAddress})` : '';
     }
-
+    setAddress(fullAddress);
     console.log(fullAddress); // e.g. '서울 성동구 왕십리로2길 20 (성수동1가)'
   };
 
-  return <DaumPostcodeEmbed onComplete={handleComplete} />;
+  const handleClick = () => {
+    open({ onComplete: handleComplete });
+  };
+
+  return (
+    <>
+      <input value={address} disabled />
+      <button type='button' onClick={handleClick}>
+        주소찾기
+      </button>
+    </>
+  );
 }

@@ -1,5 +1,6 @@
-import { ReactNode, useCallback, useRef, useState } from 'react';
+import { ReactNode, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
+import './useModal.scss';
 
 interface ModalProps {
   type: string;
@@ -24,12 +25,12 @@ export const useModal = () => {
     document.removeEventListener('mousedown', handleClickOutside);
   };
 
-  const handleClickOutside = useCallback((event: MouseEvent) => {
-    console.log(modalRef && modalRef.current?.contains(event.target as Node));
+  // 모달 밖을 클릭시 닫히게 하는 함수
+  const handleClickOutside = (event: MouseEvent) => {
     if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
       closeModal();
     }
-  }, []);
+  };
 
   // index.html에 root div 형제인 id가 modal인 div를 참조
   // createPortal을 이용하여 z-index 쌓임맥락으로 인한 예상치 못한 레이아웃 문제 해결
@@ -46,14 +47,21 @@ export const useModal = () => {
               right: 0,
               bottom: 0,
               left: 0,
-              backgroundColor: 'rgba(0, 0, 0, 0.5)',
+              backgroundColor: 'rgba(0, 0, 0, 0.7)',
               zIndex: 9999,
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
             }}
           >
-            <div ref={modalRef}>{children}</div>
+            <div
+              style={{
+                animation: 'slideIn 0.3s ease forwards',
+              }}
+              ref={modalRef}
+            >
+              {children}
+            </div>
           </div>
         )}
       </>,
